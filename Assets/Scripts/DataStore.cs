@@ -20,15 +20,16 @@ public class DataStore
         float height = width * 0.7f;
         if (ScreenSize.y < height)
         {
-            height = ScreenSize.y * 0.9f;
+            height = size.y * 0.9f;
             width = height * 1.3f;
         }
 
-        FieldSize = new Vector2(width, height);
+        Vector2 fsize = new Vector2(width + (size.x * 0.5f), height + (size.y * 0.5f));
+         
 
-        Vector2 pos = cam.ScreenToWorldPoint(FieldSize);
-        RightEdge = pos.x;
-        TopEdge = pos.y;
+        FieldSize = cam.ScreenToWorldPoint(fsize);
+        RightEdge = 0;
+        TopEdge = 0;
         LeftEdge = 0;
         BottomEdge = 0;
     }
