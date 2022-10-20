@@ -28,6 +28,8 @@ public class DataStore
          
 
         FieldSize = cam.ScreenToWorldPoint(fsize);
+        FieldSize *= 0.9f;
+
         RightEdge = 0;
         TopEdge = 0;
         LeftEdge = 0;
