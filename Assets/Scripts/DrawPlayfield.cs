@@ -24,9 +24,9 @@ public class DrawPlayfield : MonoBehaviour
         transform.position = new Vector3(0,0,0);
 
         field.transform.localScale = new Vector3(1, 1, 1);
-        field.transform.position = new Vector3(0,0,0);
+        field.transform.position = new Vector3(0,0,9);
 
         border.transform.localScale = new Vector3(1.01f, 1.01f, 1.01f);
-        border.transform.position = new Vector3(0, 0,0);
+        border.transform.position = new Vector3(0, 0,10);
     }
 }
