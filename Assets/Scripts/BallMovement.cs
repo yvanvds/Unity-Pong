@@ -26,29 +26,40 @@ public class BallMovement : MonoBehaviour
         Vector3 pos = transform.position;
         pos += direction * Time.deltaTime * speed;
 
-        if(pos.x + (transform.localScale.x * 0.5f) >= DataStore.Instance.RightEdge)
+        CheckBatCollision(pos);
+        CheckWallCollision(pos);
+ 
+        transform.position = pos;
+        float size = DataStore.Instance.FieldSize.x * 0.05f;
+        transform.localScale = new Vector3(size, size, size);
+    }
+
+    void CheckWallCollision(Vector3 pos)
+    {
+        if (pos.x + (transform.localScale.x * 0.5f) >= DataStore.Instance.RightEdge)
         {
             direction.x = -direction.x;
-            //pos += direction;
-        } else if (pos.x - (transform.localScale.x * 0.5f) <= DataStore.Instance.LeftEdge)
+        }
+        else if (pos.x - (transform.localScale.x * 0.5f) <= DataStore.Instance.LeftEdge)
         {
             direction.x = -direction.x;
-            //pos += direction;
         }
 
         if (pos.y + (transform.localScale.y * 0.5f) >= DataStore.Instance.TopEdge)
         {
             direction.y = -direction.y;
-            //pos += direction;
         }
         else if (pos.y - (transform.localScale.y * 0.5f) <= DataStore.Instance.BottomEdge)
         {
             direction.y = -direction.y;
-            //pos += direction;
         }
+    }
 
-        transform.position = pos;
-        float size = DataStore.Instance.FieldSize.x * 0.05f;
-        transform.localScale = new Vector3(size, size, size);
+    void CheckBatCollision(Vector3 pos)
+    {
+        if(pos.x < DataStore.Instance.HorizontalBatPos)
+        {
+            direction.x = -direction.x;
+        }
     }
 }

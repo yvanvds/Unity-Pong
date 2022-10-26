@@ -11,6 +11,10 @@ public class DataStore
     public float RightEdge { get; private set; }
     public float TopEdge { get; private set; }
     public float BottomEdge { get; private set; }
+    public float HorizontalBatPos { get; private set; }
+    public float VerticalBatPos { get; set; }
+
+    public Vector3 BatScale { get; set; }
 
 
     public void SetScreenSize(Vector2 size, Camera cam)
@@ -34,6 +38,7 @@ public class DataStore
         TopEdge = FieldSize.y * 0.5f;
         LeftEdge = -RightEdge;
         BottomEdge = -TopEdge;
+        HorizontalBatPos = LeftEdge + 0.7f;
     }
 
     public static DataStore Instance
