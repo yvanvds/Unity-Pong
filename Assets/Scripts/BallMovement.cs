@@ -49,19 +49,23 @@ public class BallMovement : MonoBehaviour
         if (pos.x + (transform.localScale.x * 0.5f) >= DataStore.Instance.RightEdge)
         {
             direction.x = -direction.x;
+            pos.x = DataStore.Instance.RightEdge - (transform.localScale.x * 0.5f);
         }
         else if (pos.x - (transform.localScale.x * 0.5f) <= DataStore.Instance.LeftEdge)
         {
             direction.x = -direction.x;
+            pos.x = DataStore.Instance.LeftEdge + (transform.localScale.x * 0.5f);
         }
 
         if (pos.y + (transform.localScale.y * 0.5f) >= DataStore.Instance.TopEdge)
         {
             direction.y = -direction.y;
+            pos.y = DataStore.Instance.TopEdge - (transform.localScale.y * 0.5f);
         }
         else if (pos.y - (transform.localScale.y * 0.5f) <= DataStore.Instance.BottomEdge)
         {
             direction.y = -direction.y;
+            pos.y = DataStore.Instance.BottomEdge + (transform.localScale.y * 0.5f);
         }
     }
 
@@ -80,6 +84,9 @@ public class BallMovement : MonoBehaviour
                 return;
             }
             direction.x = -direction.x;
+            pos.x = DataStore.Instance.HorizontalBatPos 
+                + (transform.localScale.x * 0.5f) 
+                + (DataStore.Instance.BatScale.x * 0.5f);
         }
     }
 }
