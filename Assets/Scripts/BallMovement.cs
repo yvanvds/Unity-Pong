@@ -10,14 +10,7 @@ public class BallMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        direction.x = Random.Range(0.5f, 1);
-        direction.y = Random.Range(0.5f, 1);
-       
-        if(Random.Range(0, 1) < 0.5f) 
-        {
-            direction.y = -direction.y;
-        }
-        direction.Normalize();
+        reset();
     }
 
     // Update is called once per frame
@@ -32,6 +25,23 @@ public class BallMovement : MonoBehaviour
         transform.position = pos;
         float size = DataStore.Instance.FieldSize.x * 0.05f;
         transform.localScale = new Vector3(size, size, size);
+    }
+
+    private void reset()
+    {
+        transform.position = new Vector3(
+            DataStore.Instance.HorizontalBatPos + 0.1f,
+            0,
+            0
+        );
+        direction.x = Random.Range(0.5f, 1);
+        direction.y = Random.Range(0.5f, 1);
+
+        if (Random.Range(0, 1) < 0.5f)
+        {
+            direction.y = -direction.y;
+        }
+        direction.Normalize();
     }
 
     void CheckWallCollision(Vector3 pos)
@@ -57,8 +67,18 @@ public class BallMovement : MonoBehaviour
 
     void CheckBatCollision(Vector3 pos)
     {
-        if(pos.x < DataStore.Instance.HorizontalBatPos)
+        if(pos.x - (transform.localScale.x * 0.5f) < DataStore.Instance.HorizontalBatPos)
         {
+            if(pos.y - (transform.localScale.y * 0.5f) > 
+                DataStore.Instance.VerticalBatPos + 
+                (DataStore.Instance.BatScale.y * 0.5f)) {
+                return;
+            }
+            if (pos.y + (transform.localScale.y * 0.5f) <
+                DataStore.Instance.VerticalBatPos -
+                (DataStore.Instance.BatScale.y * 0.5f)) {
+                return;
+            }
             direction.x = -direction.x;
         }
     }

@@ -38,7 +38,7 @@ public class DataStore
         TopEdge = FieldSize.y * 0.5f;
         LeftEdge = -RightEdge;
         BottomEdge = -TopEdge;
-        HorizontalBatPos = LeftEdge + 0.7f;
+        HorizontalBatPos = LeftEdge + 0.7f + (BatScale.x * 0.5f);
     }
 
     public static DataStore Instance
